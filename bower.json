@@ -1,0 +1,31 @@
+{
+  "name": "retext-soundex",
+  "main": "index.js",
+  "description": "Retext implementation of the Soundex algorithm",
+  "keywords": [
+    "retext",
+    "soundex"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "soundex-code": "^0.0.1"
+  },
+  "authors": [
+    "Titus Wormer <tituswormer@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/retext-soundex.git"
+  },
+  "ignore": [
+    ".*",
+    "*.log",
+    "*.md",
+    "component.json",
+    "package.json",
+    "coverage",
+    "node_modules",
+    "benchmark",
+    "spec"
+  ]
+}

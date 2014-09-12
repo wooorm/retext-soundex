@@ -1,0 +1,17 @@
+{
+  "name": "retext-soundex",
+  "version": "0.0.1",
+  "description": "Retext implementation of the Soundex algorithm",
+  "keywords": [
+    "soundex",
+    "retext"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "wooorm/soundex-code": "^0.0.1"
+  },
+  "scripts" : [
+    "index.js"
+  ],
+  "repository": "wooorm/retext-soundex"
+}
