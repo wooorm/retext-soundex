@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>retext-soundex</title>
+        <style>
+            label {
+                display: block;
+            }
+            fieldset {
+                border-width: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>retext-soundex</h1>
+        <p>A quick demo of <a href="https://github.com/wooorm/retext-soundex">retext-soundex</a>.</p>
+        <p>Just paste (or write) some text in the text area below, and next to it the HTML version of the document will appear, where every word is colour coded to its phonetics (words which sound the same are coloured the same).</p>
+        <p>Please raise any issues on <a href="https://github.com/wooorm/retext-soundex/issues">Github</a>.</p>
+        <fieldset>
+            <label for="stem">Use stemmer: <input type="checkbox" name="stem" checked /></label>
+        </fieldset>
+        <p><strong>Note!</strong> The generated colours are random (albeit generated from the phonetics): White colours might (will!) appear. Equal colours for different stems might also appear.</p>
+        <textarea rows="20" cols="80" autofocus>Try it out. Just start typing. It’s pretty cool. A simple english sentence. In a paragraph.
+Another sentence, in another paragraph. Hiccups. vileness. file. detestable tetest testable.</textarea>
+        <div></div>
+        <script src="build/build.js"></script>
+    </body>
+</html>
