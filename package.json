@@ -2,13 +2,17 @@
   "name": "retext-soundex",
   "version": "0.0.1",
   "description": "Retext implementation of the Soundex algorithm",
+  "license": "MIT",
   "keywords": [
     "soundex",
     "retext"
   ],
-  "license": "MIT",
   "dependencies": {
     "soundex-code": "^0.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/retext-soundex.git"
   },
   "author": "Titus Wormer <tituswormer@gmail.com>",
   "devDependencies": {
@@ -20,10 +24,6 @@
     "retext-content": "^0.2.2",
     "retext-porter-stemmer": "^0.1.1",
     "retext-visit": "^0.1.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wooorm/retext-soundex.git"
   },
   "scripts": {
     "test": "node_modules/.bin/_mocha --reporter spec --check-leaks -u exports spec/retext-soundex.spec.js",
