@@ -24,49 +24,55 @@ $ bower install retext-soundex
 ```js
 var Retext = require('retext'),
     visit = require('retext-visit'),
-    soundex = require('retext-soundex');
+    soundex = require('retext-soundex'),
+    retext;
 
-var root = new Retext()
+retext = new Retext()
     .use(visit)
-    .use(soundex)
-    .parse('A simple english sentence.');
+    .use(soundex);
 
-root.visitType(root.WORD_NODE, function (node) {
-    console.log(node.toString(), node.data.phonetics);
+retext.parse('A simple english sentence.', function (err, tree) {
+    tree.visitType(tree.WORD_NODE, function (node) {
+        console.log(node.toString(), node.data.phonetics);
+    });
+    /**
+     * 'A', 'A000'
+     * 'simple', 'S514'
+     * 'english', 'E5242'
+     * 'sentence', 'S5352'
+     */
 });
-// A A000
-// simple S514
-// English E5242
-// sentence S5352
 ```
 
-You can also combine it with a stemmer (e.g., [retext-porter-stemmer](https://github.com/wooorm/retext-porter-stemmer))
+You can also combine it with a stemmer (such as [retext-porter-stemmer](https://github.com/wooorm/retext-porter-stemmer) or [retext-lancaster-stemmer](https://github.com/wooorm/retext-lancaster-stemmer)).
 
 ```js
 var Retext = require('retext'),
     visit = require('retext-visit'),
     soundex = require('retext-soundex'),
-    stemmer = require('retext-porter-stemmer');
+    stemmer = require('retext-porter-stemmer'),
+    retext;
 
-var root = new Retext()
+retext = new Retext()
     .use(visit)
     .use(soundex)
-    .use(stemmer)
-    .parse('A detestable paragraph');
+    .use(stemmer);
 
-root.visitType(root.WORD_NODE, function (node) {
-    console.log(node.toString(), node.data.phonetics, node.data.stemmedPhonetics);
+retext.parse('A detestable paragraph', function (err, tree) {
+    tree.visitType(tree.WORD_NODE, function (node) {
+        console.log(node.toString(), node.data.phonetics, node.data.stemmedPhonetics);
+    });
+    /**
+     * 'A', 'A000', 'A000'
+     * 'detestable', 'D32314', 'D323'
+     * 'paragraph', 'P6261', 'P6261'
+     */
 });
-// A A000 A000
-// detestable D32314 D323
-// paragraph P6261 P6261
 ```
-
-Both examples also uses [retext-visit](https://github.com/wooorm/retext-visit).
 
 ## API
 
-None, the plugin automatically detects the phonetics of each word (using [wooorm/soundex-code](https://github.com/wooorm/soundex-code)) when it’s created or changed, and stores the phonetics in `wordNode.data.phonetics`.
+None, the plugin automatically detects the phonetics of each word (using [wooorm/soundex](https://github.com/wooorm/soundex)) when it’s created or changed, and stores the phonetics in `wordNode.data.phonetics`.
 
 ## Related
 
