@@ -75,4 +75,4 @@ None, the plugin automatically detects the phonetics of each word (using [wooorm
 
 ## License
 
-  MIT
+MIT © Titus Wormer
