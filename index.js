@@ -1,28 +1,63 @@
 'use strict';
 
-exports = module.exports = function () {};
+/**
+ * Dependencies.
+ */
 
-var soundexCode = require('soundex-code');
+var phonetics;
 
-function soundex(value) {
-    return soundexCode(value, Infinity);
-}
+phonetics = require('soundex-code');
+
+/**
+ * Define `soundex`.
+ */
+
+function soundex() {}
+
+/**
+ * Change handler
+ *
+ * @this {WordNode}
+ */
 
 function onchange() {
-    var data = this.data,
-        value = this.toString();
+    var data,
+        value;
 
-    data.phonetics = value ? soundex(value) : null;
+    data = this.data;
+    value = this.toString();
+
+    data.phonetics = value ? phonetics(value, Infinity) : null;
 
     if ('stem' in data) {
-        data.stemmedPhonetics = value ? soundex(data.stem) : null;
+        data.stemmedPhonetics = value ? phonetics(data.stem, Infinity) : null;
     }
 }
 
+/**
+ * Define `attach`.
+ *
+ * @param {Retext} retext
+ */
+
 function attach(retext) {
-    retext.parser.TextOM.WordNode.on('changetextinside', onchange);
-    retext.parser.TextOM.WordNode.on('removeinside', onchange);
-    retext.parser.TextOM.WordNode.on('insertinside', onchange);
+    var WordNode;
+
+    WordNode = retext.TextOM.WordNode;
+
+    WordNode.on('changetextinside', onchange);
+    WordNode.on('removeinside', onchange);
+    WordNode.on('insertinside', onchange);
 }
 
-exports.attach = attach;
+/**
+ * Expose `attach`.
+ */
+
+soundex.attach = attach;
+
+/**
+ * Expose `soundex`.
+ */
+
+module.exports = soundex;
