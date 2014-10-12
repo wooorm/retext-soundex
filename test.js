@@ -11,7 +11,7 @@ var soundex,
     Retext,
     assert;
 
-soundex = require('..');
+soundex = require('./');
 Retext = require('retext');
 visit = require('retext-visit');
 content = require('retext-content');
