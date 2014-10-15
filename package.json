@@ -1,6 +1,6 @@
 {
   "name": "retext-soundex",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Retext implementation of the Soundex algorithm",
   "license": "MIT",
   "keywords": [
