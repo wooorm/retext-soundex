@@ -65,7 +65,7 @@ describe('soundex()', function () {
         });
 
         it('should process each `WordNode`', function () {
-            tree.visitType(tree.WORD_NODE, function (wordNode) {
+            tree.visit(tree.WORD_NODE, function (wordNode) {
                 assert('phonetics' in wordNode.data);
             });
         });
@@ -73,7 +73,7 @@ describe('soundex()', function () {
         it('should set `phonetics` to `null` when `WordNode` (no ' +
             'longer?) has a value',
             function () {
-                tree.visitType(tree.WORD_NODE, function (wordNode) {
+                tree.visit(tree.WORD_NODE, function (wordNode) {
                     wordNode.removeContent();
 
                     assert(wordNode.data.phonetics === null);
@@ -87,7 +87,7 @@ describe('soundex()', function () {
 
                 index = -1;
 
-                tree.visitType(tree.WORD_NODE, function (wordNode) {
+                tree.visit(tree.WORD_NODE, function (wordNode) {
                     index++;
 
                     wordNode.replaceContent(otherWords[index]);
@@ -106,7 +106,7 @@ describe('soundex() with a stemmer', function () {
         });
 
         it('should process `stem` in each `WordNode`', function () {
-            tree.visitType(tree.WORD_NODE, function (wordNode) {
+            tree.visit(tree.WORD_NODE, function (wordNode) {
                 assert('stemmedPhonetics' in wordNode.data);
             });
         });
@@ -114,7 +114,7 @@ describe('soundex() with a stemmer', function () {
         it('should set `stemmedPhonetics` to `null` when `WordNode` (no ' +
             'longer?) has a value',
             function () {
-                tree.visitType(tree.WORD_NODE, function (wordNode) {
+                tree.visit(tree.WORD_NODE, function (wordNode) {
                     wordNode.removeContent();
 
                     assert(wordNode.data.stemmedPhonetics === null);
@@ -128,7 +128,7 @@ describe('soundex() with a stemmer', function () {
 
                 index = -1;
 
-                tree.visitType(tree.WORD_NODE, function (wordNode) {
+                tree.visit(tree.WORD_NODE, function (wordNode) {
                     index++;
 
                     wordNode.replaceContent(otherWords[index]);
