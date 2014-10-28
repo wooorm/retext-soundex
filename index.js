@@ -9,12 +9,6 @@ var phonetics;
 phonetics = require('soundex-code');
 
 /**
- * Define `soundex`.
- */
-
-function soundex() {}
-
-/**
  * Change handler
  *
  * @this {WordNode}
@@ -35,12 +29,12 @@ function onchange() {
 }
 
 /**
- * Define `attach`.
+ * Define `soundex`.
  *
  * @param {Retext} retext
  */
 
-function attach(retext) {
+function soundex(retext) {
     var WordNode;
 
     WordNode = retext.TextOM.WordNode;
@@ -49,12 +43,6 @@ function attach(retext) {
     WordNode.on('removeinside', onchange);
     WordNode.on('insertinside', onchange);
 }
-
-/**
- * Expose `attach`.
- */
-
-soundex.attach = attach;
 
 /**
  * Expose `soundex`.
