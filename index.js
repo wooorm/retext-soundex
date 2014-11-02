@@ -9,7 +9,7 @@ var retextSoundex = require('retext-soundex'),
     stemElement = document.getElementsByName('stem')[0],
     style = document.styleSheets[0],
     phonetics = {},
-    shouldUseStemmedPhonetics, currentDOMTree, currentTree;
+    shouldUseStemmedPhonetics, currentDOMTree;
 
 function hashCode(str) {
     var hash = 0;
@@ -64,28 +64,33 @@ function getPhonetics() {
         currentDOMTree.parentNode.removeChild(currentDOMTree);
     }
 
-    currentTree = retext.parse(value);
-
-    currentTree.visit(function (node) {
-        var phonetic;
-
-        if (!node.DOMTagName || !node.data.phonetics) {
-            return;
+    retext.parse(value, function (err, tree) {
+        if (err) {
+            throw err;
         }
 
-        phonetic = node.data.phonetics;
+        tree.visit(function (node) {
+            var phonetic;
 
-        if (shouldUseStemmedPhonetics) {
-            phonetic = node.data.stemmedPhonetics;
-        }
+            if (!node.DOMTagName || !node.data.phonetics) {
+                return;
+            }
 
-        onphonetics(phonetic);
+            phonetic = node.data.phonetics;
 
-        node.toDOMNode().setAttribute('title', phonetic);
+            if (shouldUseStemmedPhonetics) {
+                phonetic = node.data.stemmedPhonetics;
+            }
+
+            onphonetics(phonetic);
+
+            node.toDOMNode().setAttribute('title', phonetic);
+        });
+
+        currentDOMTree = tree.toDOMNode();
+
+        outputElement.appendChild(currentDOMTree);
     });
-
-    currentDOMTree = currentTree.toDOMNode();
-    outputElement.appendChild(currentDOMTree);
 }
 
 function onchange(event) {
