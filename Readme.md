@@ -1,4 +1,4 @@
-# retext-soundex [![Build Status](https://travis-ci.org/wooorm/retext-soundex.svg?branch=master)](https://travis-ci.org/wooorm/retext-soundex) [![Coverage Status](https://img.shields.io/coveralls/wooorm/retext-soundex.svg)](https://coveralls.io/r/wooorm/retext-soundex?branch=master)
+# retext-soundex [![Build Status](https://img.shields.io/travis/wooorm/retext-soundex.svg?style=flat)](https://travis-ci.org/wooorm/retext-soundex) [![Coverage Status](https://img.shields.io/coveralls/wooorm/retext-soundex.svg?style=flat)](https://coveralls.io/r/wooorm/retext-soundex?branch=master)
 
 **[Retext](https://github.com/wooorm/retext "Retext")** implementation of the [Soundex](http://en.wikipedia.org/wiki/Soundex) algorithm.
 
