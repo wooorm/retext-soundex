@@ -22,24 +22,29 @@ $ bower install retext-soundex
 ## Usage
 
 ```js
-var Retext = require('retext'),
-    visit = require('retext-visit'),
-    soundex = require('retext-soundex'),
-    retext;
+var Retext = require('retext');
+var visit = require('retext-visit');
+var inspect = require('retext-inspect');
+var soundex = require('retext-soundex');
 
-retext = new Retext()
+var retext = new Retext()
+    .use(inspect)
     .use(visit)
     .use(soundex);
 
 retext.parse('A simple english sentence.', function (err, tree) {
-    tree.visitType(tree.WORD_NODE, function (node) {
-        console.log(node.toString(), node.data.phonetics);
+    tree.visit(tree.WORD_NODE, function (node) {
+        console.log(node);
     });
-    /**
-     * 'A', 'A000'
-     * 'simple', 'S514'
-     * 'english', 'E5242'
-     * 'sentence', 'S5352'
+    /*
+     * WordNode[1] [data={"phonetics":"A000"}]
+     * └─ TextNode: 'A'
+     * WordNode[1] [data={"phonetics":"S514"}]
+     * └─ TextNode: 'simple'
+     * WordNode[1] [data={"phonetics":"E5242"}]
+     * └─ TextNode: 'english'
+     * WordNode[1] [data={"phonetics":"S5352"}]
+     * └─ TextNode: 'sentence'
      */
 });
 ```
@@ -47,32 +52,37 @@ retext.parse('A simple english sentence.', function (err, tree) {
 You can also combine it with a stemmer (such as [retext-porter-stemmer](https://github.com/wooorm/retext-porter-stemmer) or [retext-lancaster-stemmer](https://github.com/wooorm/retext-lancaster-stemmer)).
 
 ```js
-var Retext = require('retext'),
-    visit = require('retext-visit'),
-    soundex = require('retext-soundex'),
-    stemmer = require('retext-porter-stemmer'),
-    retext;
+var Retext = require('retext');
+var visit = require('retext-visit');
+var inspect = require('retext-inspect');
+var soundex = require('retext-soundex');
+var stemmer = require('retext-porter-stemmer');
 
-retext = new Retext()
+var retext = new Retext()
+    .use(inspect)
     .use(visit)
     .use(soundex)
+    /* make sure to attach the stemmer after soundex. */
     .use(stemmer);
 
-retext.parse('A detestable paragraph', function (err, tree) {
-    tree.visitType(tree.WORD_NODE, function (node) {
-        console.log(node.toString(), node.data.phonetics, node.data.stemmedPhonetics);
+retext.parse('A detestable paragraph.', function (err, tree) {
+    tree.visit(tree.WORD_NODE, function (node) {
+        console.log(node);
     });
-    /**
-     * 'A', 'A000', 'A000'
-     * 'detestable', 'D32314', 'D323'
-     * 'paragraph', 'P6261', 'P6261'
+    /*
+     * WordNode[1] [data={"stem":"a","phonetics":"A000","stemmedPhonetics":"A000"}]
+     * └─ TextNode: 'A'
+     * WordNode[1] [data={"stem":"detest","phonetics":"D32314","stemmedPhonetics":"D323"}]
+     * └─ TextNode: 'detestable'
+     * WordNode[1] [data={"stem":"paragraph","phonetics":"P6261","stemmedPhonetics":"P6261"}]
+     * └─ TextNode: 'paragraph'
      */
 });
 ```
 
 ## API
 
-None, the plugin automatically detects the phonetics of each word (using [wooorm/soundex](https://github.com/wooorm/soundex)) when it’s created or changed, and stores the phonetics in `wordNode.data.phonetics`.
+None, the plugin automatically detects the phonetics of each word (using [wooorm/soundex](https://github.com/wooorm/soundex)), and stores the phonetics in `word.data.phonetics`. If a stemmer is used, the stemmed phonetics are stored in `word.data.stemmedPhonetics`.
 
 ## Related
 
