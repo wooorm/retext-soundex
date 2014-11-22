@@ -5,17 +5,19 @@
  */
 
 var soundex,
+    Retext,
+    inspect,
     stemmer,
     visit,
     content,
-    Retext,
     assert;
 
 soundex = require('./');
 Retext = require('retext');
+inspect = require('retext-inspect');
+stemmer = require('retext-porter-stemmer');
 visit = require('retext-visit');
 content = require('retext-content');
-stemmer = require('retext-porter-stemmer');
 assert = require('assert');
 
 /**
@@ -26,11 +28,13 @@ var retext,
     retextWithStemmer;
 
 retext = new Retext()
+    .use(inspect)
     .use(content)
     .use(visit)
     .use(soundex);
 
 retextWithStemmer = new Retext()
+    .use(inspect)
     .use(content)
     .use(visit)
     .use(soundex)
