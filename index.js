@@ -1,15 +1,38 @@
-var retextSoundex = require('retext-soundex'),
-    porterStemmer = require('retext-porter-stemmer'),
-    visit = require('retext-visit'),
-    dom = require('retext-dom'),
-    Retext = require('retext'),
-    retext = new Retext().use(visit).use(retextSoundex).use(porterStemmer).use(dom),
-    inputElement = document.getElementsByTagName('textarea')[0],
-    outputElement = document.getElementsByTagName('div')[0],
-    stemElement = document.getElementsByName('stem')[0],
-    style = document.styleSheets[0],
-    phonetics = {},
-    shouldUseStemmedPhonetics, currentDOMTree;
+/**
+ * Dependencies.
+ */
+
+var Retext = require('wooorm/retext@0.4.0');
+var soundex = require('wooorm/retext-soundex@0.1.4');
+var stemmer = require('wooorm/retext-porter-stemmer@0.2.2');
+var dom = require('wooorm/retext-dom@0.2.4');
+var visit = require('wooorm/retext-visit@0.2.2');
+
+/**
+ * Retext.
+ */
+
+var retext = new Retext()
+    .use(visit)
+    .use(dom)
+    .use(soundex)
+    .use(stemmer);
+
+/**
+ * DOM elements.
+ */
+
+var $input = document.getElementsByTagName('textarea')[0];
+var $output = document.getElementsByTagName('div')[0];
+var $stem = document.getElementsByTagName('input')[0];
+
+/**
+ * Get a color representation from a string.
+ */
+
+var style = document.styleSheets[0];
+
+var phonetics = {};
 
 function hashCode(str) {
     var hash = 0;
@@ -26,7 +49,7 @@ function intToARGB(i){
            (i&0xFF).toString(16);
 }
 
-function getColourFromString(value) {
+function getColorFromString(value) {
     value = intToARGB(hashCode(value)).slice(0, 6);
 
     while (value.length < 6) {
@@ -36,6 +59,10 @@ function getColourFromString(value) {
     return '#' + value;
 }
 
+/**
+ * Add a CSS rule.
+ */
+
 function addCSSRule(sheet, selector, rules) {
     if(sheet.insertRule) {
         sheet.insertRule(selector + '{' + rules + '}');
@@ -44,34 +71,48 @@ function addCSSRule(sheet, selector, rules) {
     }
 }
 
+/**
+ * Callback when new phonetics are calculated.
+ */
+
 function onphonetics(phonetic) {
-    var colour;
+    var color;
 
     if (phonetic in phonetics) {
         return;
     }
 
-    colour = getColourFromString(phonetic)
-    phonetics[phonetic] = colour;
+    color = getColorFromString(phonetic)
+    phonetics[phonetic] = color;
 
-    addCSSRule(style, '[title="' + phonetic + '"]', 'color:' + colour);
+    addCSSRule(style, '[title="' + phonetic + '"]', 'color:' + color);
 }
 
-function getPhonetics() {
-    value = inputElement.value;
+/**
+ * Events
+ */
 
-    if (currentDOMTree) {
-        currentDOMTree.parentNode.removeChild(currentDOMTree);
+var shouldUseStemmedPhonetics = $stem.checked;
+
+function onshouldstemchange() {
+    shouldUseStemmedPhonetics = $stem.checked;
+
+    oninputchange();
+}
+
+var tree;
+
+function oninputchange() {
+    if (tree) {
+        tree.toDOMNode().parentNode.removeChild(tree.toDOMNode());
     }
 
-    retext.parse(value, function (err, tree) {
-        if (err) {
-            throw err;
-        }
+    retext.parse($input.value, function (err, root) {
+        if (err) throw err;
+
+        tree = root;
 
         tree.visit(function (node) {
-            var phonetic;
-
             if (!node.DOMTagName || !node.data.phonetics) {
                 return;
             }
@@ -87,18 +128,11 @@ function getPhonetics() {
             node.toDOMNode().setAttribute('title', phonetic);
         });
 
-        currentDOMTree = tree.toDOMNode();
-
-        outputElement.appendChild(currentDOMTree);
+        $output.appendChild(tree.toDOMNode());
     });
 }
 
-function onchange(event) {
-    shouldUseStemmedPhonetics = event.target.checked;
-    getPhonetics();
-}
+$input.addEventListener('input', oninputchange);
+$stem.addEventListener('change', onshouldstemchange);
 
-inputElement.addEventListener('input', getPhonetics);
-stemElement.addEventListener('change', onchange);
-onchange({'target' : stemElement});
-getPhonetics();
+onshouldstemchange();
