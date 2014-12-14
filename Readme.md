@@ -1,6 +1,6 @@
 # retext-soundex [![Build Status](https://img.shields.io/travis/wooorm/retext-soundex.svg?style=flat)](https://travis-ci.org/wooorm/retext-soundex) [![Coverage Status](https://img.shields.io/coveralls/wooorm/retext-soundex.svg?style=flat)](https://coveralls.io/r/wooorm/retext-soundex?branch=master)
 
-**[Retext](https://github.com/wooorm/retext "Retext")** implementation of the [Soundex](http://en.wikipedia.org/wiki/Soundex) algorithm.
+**[Retext](https://github.com/wooorm/retext)** implementation of the [Soundex](http://en.wikipedia.org/wiki/Soundex) algorithm.
 
 ## Installation
 
@@ -82,7 +82,7 @@ retext.parse('A detestable paragraph.', function (err, tree) {
 
 ## API
 
-None, the plugin automatically detects the phonetics of each word (using [wooorm/soundex](https://github.com/wooorm/soundex)), and stores the phonetics in `word.data.phonetics`. If a stemmer is used, the stemmed phonetics are stored in `word.data.stemmedPhonetics`.
+None, **retext-soundex** automatically detects the phonetics of each [`WordNode`](https://github.com/wooorm/textom#textomwordnode-nlcstwordnode) (using **[wooorm/soundex-code](https://github.com/wooorm/soundex-code)**), and stores the phonetics in `node.data.phonetics`. If a stemmer is used, the stemmed phonetics are stored in `node.data.stemmedPhonetics`.
 
 ## Related
 
