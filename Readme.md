@@ -114,4 +114,4 @@ On a MacBook Air, **retext** performs about 13% slower with **retext-soundex**.
 
 ## License
 
-MIT © [Titus Wormer](http://wooorm.com)
+[MIT](LICENSE) © [Titus Wormer](http://wooorm.com)
