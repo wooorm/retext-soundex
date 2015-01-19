@@ -22,6 +22,12 @@ $ component install wooorm/retext-soundex
 $ bower install retext-soundex
 ```
 
+[Duo](http://duojs.org/#getting-started):
+
+```javascript
+var soundex = require('wooorm/retext-soundex');
+```
+
 ## Usage
 
 ```javascript
