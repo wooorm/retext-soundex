@@ -2,11 +2,11 @@
  * Dependencies.
  */
 
-var Retext = require('wooorm/retext@0.5.0-rc.1');
-var soundex = require('wooorm/retext-soundex@0.1.5');
-var stemmer = require('wooorm/retext-porter-stemmer@0.2.4');
-var dom = require('wooorm/retext-dom@0.3.0');
-var visit = require('wooorm/retext-visit@0.2.5');
+var Retext = require('wooorm/retext@0.5.0');
+var soundex = require('wooorm/retext-soundex@0.1.6');
+var stemmer = require('wooorm/retext-porter-stemmer@0.2.5');
+var dom = require('wooorm/retext-dom@0.3.2');
+var visit = require('wooorm/retext-visit@0.2.6');
 
 /**
  * Retext.
