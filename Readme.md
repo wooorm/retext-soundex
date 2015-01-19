@@ -5,23 +5,26 @@
 ## Installation
 
 npm:
-```sh
+
+```bash
 $ npm install retext-soundex
 ```
 
 Component:
-```sh
+
+```bash
 $ component install wooorm/retext-soundex
 ```
 
 Bower:
-```sh
+
+```bash
 $ bower install retext-soundex
 ```
 
 ## Usage
 
-```js
+```javascript
 var Retext = require('retext');
 var visit = require('retext-visit');
 var inspect = require('retext-inspect');
@@ -51,7 +54,7 @@ retext.parse('A simple english sentence.', function (err, tree) {
 
 You can also combine it with a stemmer (such as [retext-porter-stemmer](https://github.com/wooorm/retext-porter-stemmer) or [retext-lancaster-stemmer](https://github.com/wooorm/retext-lancaster-stemmer)).
 
-```js
+```javascript
 var Retext = require('retext');
 var visit = require('retext-visit');
 var inspect = require('retext-inspect');
@@ -88,7 +91,7 @@ None, **retext-soundex** automatically detects the phonetics of each [`WordNode`
 
 On a MacBook Air, **retext** performs about 13% slower with **retext-soundex**.
 
-```
+```text
            retext w/o retext-soundex
   225 op/s » A paragraph (5 sentences, 100 words)
    25 op/s » A section (10 paragraphs, 50 sentences, 1,000 words)
