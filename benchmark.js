@@ -3,14 +3,14 @@
 var Retext,
     soundex;
 
-/**
+/*
  * Dependencies.
  */
 
 Retext = require('retext');
 soundex = require('./');
 
-/**
+/*
  * Dependencies.
  */
 
@@ -20,7 +20,7 @@ var retext,
 retext = new Retext();
 retextWithSoundex = new Retext().use(soundex);
 
-/**
+/*
  * Test data: A (big?) article (w/ 100 paragraphs, 500
  * sentences, 10,000 words);
  *

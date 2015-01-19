@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+/*
  * Dependencies.
  */
 
@@ -13,7 +13,6 @@ phonetics = require('soundex-code');
  *
  * @this {WordNode}
  */
-
 function onchange() {
     var data,
         value;
@@ -33,12 +32,11 @@ function onchange() {
  *
  * @param {Retext} retext
  */
-
 function soundex(retext) {
     retext.TextOM.WordNode.on('changeinside', onchange);
 }
 
-/**
+/*
  * Expose `soundex`.
  */
 

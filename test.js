@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+/*
  * Dependencies.
  */
 
@@ -20,7 +20,7 @@ visit = require('retext-visit');
 content = require('retext-content');
 assert = require('assert');
 
-/**
+/*
  * Retext.
  */
 
@@ -40,7 +40,7 @@ retextWithStemmer = new Retext()
     .use(soundex)
     .use(stemmer);
 
-/**
+/*
  * Fixtures.
  */
 
@@ -54,7 +54,7 @@ otherWords = ['A', 'detestable', 'vile', 'paragraph'];
 otherPhonetics = ['A000', 'D32314', 'V400', 'P6261'];
 stemmedOtherPhonetics = ['A000', 'D323', 'V400', 'P6261'];
 
-/**
+/*
  * Tests.
  */
 
