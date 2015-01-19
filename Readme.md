@@ -4,19 +4,19 @@
 
 ## Installation
 
-npm:
+[npm](https://docs.npmjs.com/cli/install):
 
 ```bash
 $ npm install retext-soundex
 ```
 
-Component:
+[Component.js](https://github.com/componentjs/component):
 
 ```bash
 $ component install wooorm/retext-soundex
 ```
 
-Bower:
+[Bower](http://bower.io/#install-packages):
 
 ```bash
 $ bower install retext-soundex
