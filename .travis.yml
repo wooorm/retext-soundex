@@ -3,11 +3,7 @@ script: npm run-script test-travis
 node_js:
 - '0.10'
 - '0.11'
-after_script: npm install coveralls@2.10.0 && cat ./coverage/lcov.info | coveralls
-deploy:
-  provider: npm
-  email: tituswormer@gmail.com
-  api_key:
-    secure: Y+kS2X50cIuekjJed+2vxu5t2NXjVZuRqJsTEKbMcMhjAChtLknIkTe/3Cdj80Ui0Vp8NEukQAhrLzJmpAHQU8UQ+8GldZYMbcTJ1RmsvDdfMvBuFXKXliFSxt3bIgj7B+XOKifqstVskfVA9Ga7vG9FE6qu6gxxqpBpTXp06zA=
-  on:
-    repo: wooorm/retext-soundex
+- '0.12'
+- iojs
+sudo: false
+after_script: npm install codecov.io && cat ./coverage/lcov.info | codecov

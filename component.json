@@ -8,10 +8,12 @@
     "retext"
   ],
   "dependencies": {
-    "wooorm/soundex-code": "^0.1.0"
+    "wooorm/soundex-code": "^0.1.2",
+    "wooorm/unist-util-visit": "^1.0.0",
+    "wooorm/nlcst-to-string": "^0.1.5"
   },
   "repository": "wooorm/retext-soundex",
-  "scripts" : [
+  "scripts": [
     "index.js"
   ]
 }
