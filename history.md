@@ -4,6 +4,11 @@
 
 <!--lint disable maximum-line-length-->
 
+1.0.0 / 2015-08-01
+==================
+
+*   Refactor api, purpose, for retext@1.0.0 ([ad7d5d9](https://github.com/wooorm/retext-soundex/commit/ad7d5d9))
+
 0.1.6 / 2015-01-19
 ==================
 
